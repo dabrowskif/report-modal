@@ -1,7 +1,8 @@
 import React from 'react';
 
 import {
-  fireEvent, render, screen,
+  configure,
+  fireEvent, render, screen, waitFor,
 } from '@testing-library/react';
 import Modal from '../../../Modal/Modal';
 import ExportReport from '../ExportReport';

@@ -93,7 +93,12 @@ function ExportReport(props: { closeModal: () => void }): JSX.Element {
     if (isFormCorrect(formData)) {
       setResponse('Pending...', 'orange');
       const { status } = await sendReport(formData);
-      setResponse(`Request sent! Status: ${status} `, 'green');
+
+      if (status === 200) {
+        setResponse(`Request sent! Status: ${status}`, 'green');
+      } else {
+        setResponse('Something went wrong.', 'red');
+      }
     } else {
       setResponse('Something went wrong.', 'red');
     }

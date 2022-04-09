@@ -1,46 +1,30 @@
-# Getting Started with Create React App
+# Installation
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Download this repository.
+Inside the main folder, in the terminal, run the following command:
 
-## Available Scripts
+### `npm install`
 
-In the project directory, you can run:
+to install all dependencies, then run the following command:
 
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+to run the application.
+The application should run on the 'http://localhost:3000/' url.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+# Additional notes
 
-### `npm test`
+Due to some CORS policy problems when sending requests to postman through browser, I had to make a proxy.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+I provided simple unit tests with Jest, but didn't focus to make 100% coverage.
 
-### `npm run build`
+I am aware of one bug when changing to Specific Date schedule, selecting an hour, then changing to Weekly schedule.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+I also didn't bother with implementing e-mail correctness checking.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+UI doesn't clear the hour, but the code logic do, so when user tries to send request, he gets an error.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+One unit tests that mocks the API sometimes doesn't work in random moments (ExportReport.test.tsx => it('should return status 200 on sending correct report'))
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Design is quite similar to the task that was given, but i didn't bother with changing radio buttons colors, as well as
+design on Firefox and Chrome can differ a little bit.
