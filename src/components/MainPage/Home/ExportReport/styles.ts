@@ -76,10 +76,26 @@ export default makeStyles(() => ({
     border: '1px solid rgba(0, 0, 0, 0.55)',
     backgroundColor: 'white',
     color: 'rgba(0, 0, 0, 0.75)',
+    '&:hover': {
+      backgroundColor: 'rgb(235, 235, 235)',
+    },
+    '&:active': {
+      backgroundColor: 'rgb(235, 235, 235)',
+      transform: 'scale(0.85)',
+      boxShadow: '3px 2px 5px 1px rgba(0,0,0,0.25)',
+    },
   },
   buttonSubmit: {
     border: '1px solid black',
     backgroundColor: 'black',
     color: 'white',
+    '&:hover': {
+      backgroundColor: 'rgb(50, 50, 50)',
+    },
+    '&:active': {
+      backgroundColor: 'rgb(70, 70, 70)',
+      transform: 'scale(0.85)',
+      boxShadow: '3px 2px 5px 1px rgba(0,0,0,0.25)',
+    },
   },
 }));

@@ -1,4 +1,5 @@
 const mockResponse = {
+  data: {},
   status: 200,
 };
 
