@@ -37,7 +37,7 @@ function ScheduleRow(props: {
       case ESchedule.SpecificDate:
         return (
           <>
-            <Grid item xs={4} className={classes.scheduleRow}>
+            <Grid item xs={4}>
               <input
                 id="specificDate"
                 data-testid="date"
@@ -64,7 +64,7 @@ function ScheduleRow(props: {
         );
       case ESchedule.Daily:
         return (
-          <Grid item xs={4} className={classes.scheduleRow}>
+          <Grid item xs={4}>
             <select
               id="dailyDay"
               data-testid="day"
@@ -81,7 +81,7 @@ function ScheduleRow(props: {
       case ESchedule.Weekly:
         return (
           <>
-            <Grid item xs={4} className={classes.scheduleRow}>
+            <Grid item xs={4}>
               <select
                 id="weeklyDay"
                 data-testid="day"

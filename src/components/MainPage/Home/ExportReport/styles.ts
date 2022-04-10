@@ -1,38 +1,37 @@
 import { makeStyles } from '@mui/styles';
 
+const BASIC_BORDER = '1px solid rgba(0, 0, 0, 0.33)';
+const INPUT_HEIGHT = '25px';
+
 export default makeStyles(() => ({
   mainGrid: {
     width: '100%',
     fontSize: '14px',
+    '& input[type="text"], input[type="date"], input[type="time"]': {
+      height: INPUT_HEIGHT,
+    },
   },
   rowTitle: {
-    paddingBottom: '25px',
     paddingTop: '5px',
-    marginBottom: '22px',
+    paddingBottom: '25px',
     textAlign: 'left',
   },
   rowContent: {
     display: 'flex',
-    fontSize: '12px',
   },
   textInput: {
     borderRadius: '0px',
-    border: '1px solid rgba(0, 0, 0, 0.33)',
-    height: '25px',
+    border: BASIC_BORDER,
     width: '90%',
     '&:focus': {
       outline: 'none', // fixes firefox default colors
     },
   },
-  scheduleRow: {
-    marginLeft: '-51px',
-  },
   scheduleOptionInput: {
     borderRadius: '0px',
     marginLeft: '-25px',
-    border: '1px solid rgba(0, 0, 0, 0.33)',
+    border: BASIC_BORDER,
     width: '120px',
-    height: '25px',
     '&:focus': {
       outline: 'none', // fixes firefox default colors
     },
@@ -42,12 +41,11 @@ export default makeStyles(() => ({
     backgroundColor: 'white',
     marginLeft: '-25px',
     width: '125px',
-    height: '28px',
-    border: '1px solid rgba(0, 0, 0, 0.33)',
+    height: '29px',
+    border: BASIC_BORDER,
   },
   radioInput: {
-    marginLeft: '20px',
-    marginTop: '8px',
+    margin: '8px 5px 0px 20px',
     '&:focus': {
       backgroundColor: 'red',
     },
@@ -55,13 +53,6 @@ export default makeStyles(() => ({
   buttonRow: {
     display: 'flex',
     paddingTop: '10px',
-    textAlign: 'right',
-  },
-  correctResponse: {
-    color: 'green',
-  },
-  errorResponse: {
-    color: 'red',
   },
   button: {
     width: '80px',
@@ -71,6 +62,10 @@ export default makeStyles(() => ({
     '&:hover': {
       cursor: 'pointer',
     },
+    '&:active': {
+      transform: 'scale(0.85)',
+      boxShadow: '3px 2px 5px 1px rgba(0,0,0,0.25)',
+    },
   },
   buttonCancel: {
     border: '1px solid rgba(0, 0, 0, 0.55)',
@@ -79,11 +74,6 @@ export default makeStyles(() => ({
     '&:hover': {
       backgroundColor: 'rgb(235, 235, 235)',
     },
-    '&:active': {
-      backgroundColor: 'rgb(235, 235, 235)',
-      transform: 'scale(0.85)',
-      boxShadow: '3px 2px 5px 1px rgba(0,0,0,0.25)',
-    },
   },
   buttonSubmit: {
     border: '1px solid black',
@@ -91,11 +81,6 @@ export default makeStyles(() => ({
     color: 'white',
     '&:hover': {
       backgroundColor: 'rgb(50, 50, 50)',
-    },
-    '&:active': {
-      backgroundColor: 'rgb(70, 70, 70)',
-      transform: 'scale(0.85)',
-      boxShadow: '3px 2px 5px 1px rgba(0,0,0,0.25)',
     },
   },
 }));
