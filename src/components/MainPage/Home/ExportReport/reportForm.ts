@@ -35,7 +35,7 @@ export const defaultReportState = {
   format: EFormat.Excel,
   email: '',
   schedule: ESchedule.NoRepeat,
-  day: 'Monday',
+  day: EDays.Monday,
   date: '',
   time: '',
 };

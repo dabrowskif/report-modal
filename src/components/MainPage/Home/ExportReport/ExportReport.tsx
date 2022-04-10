@@ -11,63 +11,39 @@ import { sendReport } from '../../../../api';
 
 function ExportReport(props: { closeModal: () => void }): JSX.Element {
   const classes = useStyles();
-  const [formData, setFormData] = useState<IReport>(defaultReportState);
+  const [reportForm, setReportForm] = useState<IReport>(defaultReportState);
   const [requestResponse, setRequestResponse] = useState<string>('');
 
   const changeBorderOfElement = (elementName: string, color: string): void => {
     (document.getElementById(elementName) as HTMLInputElement).style.borderColor = color;
   };
 
-  const isFormCorrect = (reportForm: IReport): boolean => {
-    // console.log(reportForm);
-    const defaultBorderColor = 'rgba(0, 0, 0, 0.33)';
-
-    if (reportForm.name === '') {
-      changeBorderOfElement('name', 'red');
+  const isInputCorrect = (form: IReport, inputName: keyof IReport): boolean => {
+    if (form[inputName] === '') {
+      changeBorderOfElement(inputName, 'red');
       return false;
     }
-    changeBorderOfElement('name', defaultBorderColor);
+    changeBorderOfElement(inputName, 'rgba(0, 0, 0, 0.33)');
+    return true;
+  };
 
-    if (reportForm.email === '') {
-      changeBorderOfElement('email', 'red');
-      return false;
-    }
-    changeBorderOfElement('email', defaultBorderColor);
+  const isFormCorrect = (form: IReport): boolean => {
+    if (!isInputCorrect(form, 'name')) return false;
+    if (!isInputCorrect(form, 'email')) return false;
 
     switch (reportForm.schedule) {
       case ESchedule.NoRepeat:
         return true;
-        break;
       case ESchedule.SpecificDate:
-        if (reportForm.date === '') {
-          changeBorderOfElement('specificDate', 'red');
-          return false;
-        }
-        changeBorderOfElement('specificDate', defaultBorderColor);
-        if (reportForm.time === '') {
-          changeBorderOfElement('specificTime', 'red');
-          return false;
-        }
-        changeBorderOfElement('specificTime', defaultBorderColor);
+        if (!isInputCorrect(reportForm, 'date')) return false;
+        if (!isInputCorrect(reportForm, 'time')) return false;
         break;
       case ESchedule.Daily:
-        if (reportForm.day === '') {
-          changeBorderOfElement('dailyDay', 'red');
-          return false;
-        }
-        changeBorderOfElement('dailyDay', defaultBorderColor);
+        if (!isInputCorrect(reportForm, 'day')) return false;
         break;
       case ESchedule.Weekly:
-        if (reportForm.day === '') {
-          changeBorderOfElement('weeklyDay', 'red');
-          return false;
-        }
-        changeBorderOfElement('weeklyDay', defaultBorderColor);
-        if (reportForm.time === '') {
-          changeBorderOfElement('weeklyTime', 'red');
-          return false;
-        }
-        changeBorderOfElement('weeklyTime', defaultBorderColor);
+        if (!isInputCorrect(reportForm, 'day')) return false;
+        if (!isInputCorrect(reportForm, 'time')) return false;
         break;
       default:
         return false;
@@ -78,7 +54,7 @@ function ExportReport(props: { closeModal: () => void }): JSX.Element {
 
   const handleFormDataChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setReportForm({ ...reportForm, [name]: value });
   };
 
   const setResponse = (text: string, color: string): void => {
@@ -90,9 +66,9 @@ function ExportReport(props: { closeModal: () => void }): JSX.Element {
   const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
 
-    if (isFormCorrect(formData)) {
+    if (isFormCorrect(reportForm)) {
       setResponse('Pending...', 'orange');
-      const { status } = await sendReport(formData);
+      const { status } = await sendReport(reportForm);
 
       if (status === 200) {
         setResponse(`Request sent! Status: ${status}`, 'green');
@@ -156,10 +132,10 @@ function ExportReport(props: { closeModal: () => void }): JSX.Element {
         </Grid>
         <Grid container>
           <ScheduleRow
-            formData={formData}
-            setFormData={setFormData}
+            reportForm={reportForm}
+            setReportForm={setReportForm}
             handleChange={handleFormDataChange}
-            scheduleType={formData.schedule}
+            scheduleType={reportForm.schedule}
           />
         </Grid>
         <Divider sx={{ border: '1px solid rgba(0, 0, 0, 0.55)', width: 'calc(100% + 18.5px)', marginLeft: '-10px' }} />

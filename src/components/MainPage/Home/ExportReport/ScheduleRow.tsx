@@ -7,13 +7,13 @@ import { EDays, ESchedule, IReport } from './reportForm';
 import useStyles from './styles';
 
 function ScheduleRow(props: {
-  formData: IReport,
-  setFormData: React.Dispatch<React.SetStateAction<IReport>>,
-  handleChange: any,
+  reportForm: IReport,
+  setReportForm: React.Dispatch<React.SetStateAction<IReport>>,
+  handleChange: React.ChangeEventHandler<HTMLInputElement | HTMLSelectElement>,
   scheduleType: string
 }): JSX.Element {
   const classes = useStyles();
-  const { schedule } = props.formData;
+  const { schedule } = props.reportForm;
 
   const getLabel = (value: string): string => {
     switch (value) {
@@ -39,7 +39,7 @@ function ScheduleRow(props: {
           <>
             <Grid item xs={4}>
               <input
-                id="specificDate"
+                id="date"
                 data-testid="date"
                 type="date"
                 name="date"
@@ -52,7 +52,7 @@ function ScheduleRow(props: {
             </Grid>
             <Grid item xs={4}>
               <input
-                id="specificTime"
+                id="time"
                 data-testid="time"
                 type="time"
                 name="time"
@@ -66,7 +66,7 @@ function ScheduleRow(props: {
         return (
           <Grid item xs={4}>
             <select
-              id="dailyDay"
+              id="day"
               data-testid="day"
               name="day"
               onChange={props.handleChange}
@@ -83,7 +83,7 @@ function ScheduleRow(props: {
           <>
             <Grid item xs={4}>
               <select
-                id="weeklyDay"
+                id="day"
                 data-testid="day"
                 name="day"
                 onChange={props.handleChange}
@@ -99,7 +99,7 @@ function ScheduleRow(props: {
             </Grid>
             <Grid item xs={4}>
               <input
-                id="weeklyTime"
+                id="time"
                 data-testid="time"
                 type="time"
                 name="time"
@@ -116,8 +116,8 @@ function ScheduleRow(props: {
   };
 
   useEffect(() => {
-    props.setFormData({
-      ...props.formData, day: 'Monday', time: '', date: '',
+    props.setReportForm({
+      ...props.reportForm, day: 'Monday', time: '', date: '',
     });
   }, [schedule]);
 
